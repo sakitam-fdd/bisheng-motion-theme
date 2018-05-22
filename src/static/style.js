@@ -9,3 +9,4 @@ import './highlight.less';
 import './markdown.less';
 import './footer.less';
 import './error-page.less'
+import './main.less'

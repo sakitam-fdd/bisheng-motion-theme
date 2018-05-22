@@ -27,7 +27,18 @@ module.exports = {
     home: '/',
     sitename: 'One',
     tagline: 'The one theme for bisheng',
-    github: 'https://github.com/benjycui/bisheng',
+    github: {
+      user: 'sakitam-fdd',
+      repo: 'ol3Echarts',
+      type: 'star',
+      count: true
+    },
+    nav: [
+      { name: '示例', href: '/examples/', key: 'examples' },
+      { name: '起步', href: '/guide/index', key: 'guide' },
+      { name: 'API', href: '/api/index', key: 'api' },
+      { name: '插件', href: '/plugins/index', key: 'plugins' }
+    ]
   },
   webpackConfig (config) {
     // config.plugins.push(

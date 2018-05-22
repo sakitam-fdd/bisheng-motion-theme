@@ -4,26 +4,19 @@ import { Link } from 'react-router';
 import TweenOne from 'rc-tween-one';
 import QueueAnim from 'rc-queue-anim';
 
-const navs = [
-  { name: '示例', href: '/examples/', key: 'examples' },
-  { name: '起步', href: '/guide/index', key: 'guide' },
-  { name: 'API', href: '/api/index', key: 'api' },
-  { name: '插件', href: '/plugins/index', key: 'plugins' }
-];
-
-class Header extends React.PureComponent {
+class Header extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     isMobile: PropTypes.bool,
     activeKey: PropTypes.any,
   };
 
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  }
+
   static defaultProps = {
     className: 'header',
-  };
-
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -72,7 +65,12 @@ class Header extends React.PureComponent {
   };
 
   render () {
-    const navToRender = navs.map((item) => {
+    const {
+      location, themeConfig,
+    } = this.props
+    console.log(themeConfig)
+    const _github = `https://ghbtns.com/github-btn.html?user=${themeConfig.github.user}&repo=${themeConfig.github.repo}&type=${themeConfig.github.type}&count=${themeConfig.github.count}`
+    const navToRender = themeConfig.nav.map((item) => {
       const className = this.props.activeKey === item.key ? 'active' : '';
       if (item.open) {
         return (<li key={item.key}>
@@ -107,12 +105,12 @@ class Header extends React.PureComponent {
           </Link>
         </TweenOne>
         <span className="git-but">
-          <iframe
-            src="https://ghbtns.com/github-btn.html?user=sakitam-fdd&repo=ol3Echarts&type=star&count=true"
-            frameBorder="0"
-            scrolling="0"
-            width="98px"
-            height="20px"/>
+        <iframe
+          src={_github}
+          frameBorder="0"
+          scrolling="0"
+          width="98px"
+          height="20px"/>
         </span>
         {
           this.props.isMobile ?

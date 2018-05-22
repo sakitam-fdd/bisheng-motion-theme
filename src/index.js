@@ -12,7 +12,7 @@ module.exports = {
     path: '/',
     component: './template/layout/index',
     indexRoute: {
-      component: './template/home/index'
+      component: './template/main/index'
     },
     childRoutes: [
       {

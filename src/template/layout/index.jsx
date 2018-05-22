@@ -12,16 +12,27 @@ enquireScreen((b) => {
   isMobile = b;
 });
 
-class Index extends React.PureComponent {
-  static propTypes = {
-    children: PropTypes.any,
-    location: PropTypes.object,
-    pageData: PropTypes.any,
+class Index extends React.Component {
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
   };
 
-  state = {
-    isMobile,
+  static childContextTypes = {
+    isMobile: PropTypes.bool,
   };
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      isMobile
+    };
+  }
+
+  getChildContext () {
+    return {
+      isMobile: this.state.isMobile,
+    };
+  }
 
   componentDidMount() {
     enquireScreen((b) => {
@@ -42,23 +53,11 @@ class Index extends React.PureComponent {
   };
 
   render() {
+    const { children, ...restProps } = this.props
     const path = this.props.location.pathname;
     const pathKey = path && path.split('/')[0];
-    const key = !pathKey ? 'index' : 'page';
-    const children = !pathKey || pathKey === 'exhibition' ?
-      React.cloneElement(this.props.children, {
-        key: pathKey ? path : key,
-      }) :
-      (<Page
-        key={key}
-        pathname={this.props.location.pathname}
-        pageData={this.props.pageData}
-        hash={this.props.location.hash}
-        isMobile={this.state.isMobile}>
-        {this.props.children}
-      </Page>);
-    return (<div id="react-root" className={!pathKey ? 'home' : ''}>
-      <Header activeKey={pathKey} isMobile={this.state.isMobile} />
+    return (<div id="react-root" className={!pathKey ? 'main' : ''}>
+      <Header {...restProps} />
       <TweenOne.TweenOneGroup
         className="content-wrapper"
         onEnd={this.onChange}
@@ -67,7 +66,7 @@ class Index extends React.PureComponent {
         ref={(c) => { this.content = c; }}>
         {children}
       </TweenOne.TweenOneGroup>
-      <Footer />
+      <Footer {...restProps} />
     </div>);
   }
 }
