@@ -1,0 +1,13 @@
+build/
+example/
+config/
+lib/
+node_modules/
+test/
+_site/
+.editorconfig
+.babelrc
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
