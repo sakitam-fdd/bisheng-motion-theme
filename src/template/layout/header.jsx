@@ -5,14 +5,9 @@ import TweenOne from 'rc-tween-one';
 import QueueAnim from 'rc-queue-anim';
 
 class Header extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    isMobile: PropTypes.bool,
-    activeKey: PropTypes.any,
-  };
-
   static contextTypes = {
-    router: PropTypes.object.isRequired
+    router: PropTypes.object.isRequired,
+    isMobile: PropTypes.bool.isRequired
   }
 
   static defaultProps = {
@@ -50,7 +45,8 @@ class Header extends React.Component {
     });
 
   phoneClick = (e, phoneOpen, href, isLogo) => {
-    if (!this.props.isMobile || isLogo && !phoneOpen) {
+    const { isMobile } = this.context;
+    if (!isMobile || isLogo && !phoneOpen) {
       return;
     }
     if (href) {
@@ -65,12 +61,11 @@ class Header extends React.Component {
   };
 
   render () {
-    const {
-      location, themeConfig,
-    } = this.props
-    console.log(themeConfig)
-    const _github = `https://ghbtns.com/github-btn.html?user=${themeConfig.github.user}&repo=${themeConfig.github.repo}&type=${themeConfig.github.type}&count=${themeConfig.github.count}`
-    const navToRender = themeConfig.nav.map((item) => {
+    const { isMobile } = this.context;
+    const { themeConfig } = this.props
+    const isShowGithub = themeConfig && themeConfig.header && themeConfig.header.hasOwnProperty('github')
+    const _github = isShowGithub ? `https://ghbtns.com/github-btn.html?user=${themeConfig.header.github.user}&repo=${themeConfig.header.github.repo}&type=${themeConfig.header.github.type}&count=${themeConfig.header.github.count}` : ''
+    const navToRender = themeConfig.header.nav.map((item) => {
       const className = this.props.activeKey === item.key ? 'active' : '';
       if (item.open) {
         return (<li key={item.key}>
@@ -104,16 +99,20 @@ class Header extends React.Component {
             <img height="24" src={this.icon} />
           </Link>
         </TweenOne>
-        <span className="git-but">
-        <iframe
-          src={_github}
-          frameBorder="0"
-          scrolling="0"
-          width="98px"
-          height="20px"/>
-        </span>
         {
-          this.props.isMobile ?
+          _github ? (
+            <span className="git-but">
+              <iframe
+                src={_github}
+                frameBorder="0"
+                scrolling="0"
+                width="98px"
+                height="20px"/>
+            </span>
+          ) : ({})
+        }
+        {
+          isMobile ?
             (<div className="phone-nav">
               <div
                 className="phone-nav-bar"

@@ -7,6 +7,7 @@ import './global.less';
 import './common.less';
 import './highlight.less';
 import './markdown.less';
+import './responsive.less';
 import './footer.less';
 import './error-page.less'
 import './main.less'

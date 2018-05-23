@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
 import ScrollLink from 'rc-scroll-anim/lib/ScrollLink';
+import { isObject, isEmpty } from '../utils';
 import Banner from './Banner';
 import Introduce from './introduce';
 import '../../static/style';
@@ -20,12 +21,13 @@ class Home extends React.Component {
   }
 
   render() {
-    const {
-      themeConfig,
-    } = this.props
-    console.log(this)
+    const { themeConfig } = this.props
+    const banner = (themeConfig.index.banner &&
+      isObject(themeConfig.index.banner) &&
+      !isEmpty(themeConfig.index.banner)) ? themeConfig.index.banner : false
+    console.log(banner)
     return (
-      <DocumentTitle title={themeConfig.sitename}>
+      <DocumentTitle title={themeConfig.title}>
         <div className="main-wrapper">
           <div className="nav-wrapper">
             <ScrollLink to="banner" showHeightActive={['100%', '30%']} toHash={false} />
@@ -33,7 +35,14 @@ class Home extends React.Component {
             <ScrollLink to="page2" showHeightActive={['30%', '70%']} toHash={false} />
             <ScrollLink to="page3" showHeightActive="70%" toHash={false} />
           </div>
-          <Banner />
+          {
+            banner ? (<Banner
+              title={banner.title}
+              introduce={banner.introduce}
+              content={banner.content}
+              more={banner.more}
+              quickStart={banner.quickStart}/>) : ({})
+          }
           <Introduce
             pageData={this.props.pageData}
             utils={this.props.utils}

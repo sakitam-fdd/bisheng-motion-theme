@@ -7,14 +7,15 @@ import '../../static/style';
 import Header from './header';
 import Footer from './footer';
 
-let isMobile;
+let isMobile = false;
 enquireScreen((b) => {
   isMobile = b;
 });
 
 class Index extends React.Component {
+
   static contextTypes = {
-    router: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired
   };
 
   static childContextTypes = {
@@ -56,7 +57,7 @@ class Index extends React.Component {
     const { children, ...restProps } = this.props
     const path = this.props.location.pathname;
     const pathKey = path && path.split('/')[0];
-    return (<div id="react-root" className={!pathKey ? 'main' : ''}>
+    return (<div id="react-root" className={!pathKey ? 'index' : ''}>
       <Header {...restProps} />
       <TweenOne.TweenOneGroup
         className="content-wrapper"

@@ -4,12 +4,20 @@ import TweenOne from 'rc-tween-one';
 import QueueAnim from 'rc-queue-anim';
 import ScrollElement from 'rc-scroll-anim/lib/ScrollElement';
 import SvgMorphPlugin from 'rc-tween-one/lib/plugin/SvgMorphPlugin';
-import { Link } from 'react-router';
-import { Icon } from 'antd';
+import {Link} from 'react-router';
+import {Icon} from 'antd';
 
 TweenOne.plugins.push(SvgMorphPlugin);
 
 class Banner extends React.Component {
+  static contextTypes = {
+    title: PropTypes.string.isRequired,
+    introduce: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    more: PropTypes.object,
+    quickStart: PropTypes.object
+  }
+
   static propTypes = {
     className: PropTypes.string,
   };
@@ -18,7 +26,15 @@ class Banner extends React.Component {
     className: 'banner',
   };
 
-  render() {
+  render () {
+    const {
+      title,
+      introduce,
+      content,
+      more,
+      quickStart
+    } = this.props
+    console.log(banner)
     return (<ScrollElement id="banner" className={`${this.props.className}-wrapper`}>
       <svg className={`${this.props.className}-bg-center`} width="100%" viewBox="0 0 1200 800">
         <TweenOne
@@ -48,44 +64,37 @@ class Banner extends React.Component {
         <QueueAnim
           type="bottom"
           className={`${this.props.className}-text`}
-          delay={300}
-        >
+          delay={300}>
           <h1 key="h1">Motion Design</h1>
           <h3 key="h3">Animation specification and components of Ant Design.</h3>
           <p key="p">
-            使用 Ant Motion 能够快速在 React 框架中使用动画。<br />
+            使用 Ant Motion 能够快速在 React 框架中使用动画。<br/>
             我们提供了单项，组合动画，以及整套解决方案
           </p>
           <div key="button">
             <Link to="/language/basic" className={`${this.props.className}-text-button`}>
               了解更多
-              <i />
+              <i/>
             </Link>
-            <a
-              className={`${this.props.className}-text-button template`}
-              href="/edit#t%3Dnav_0_0%2Ccontent_0_0%2Ccontent_2_0%2Ccontent_3_0%2Ccontent_4_0%2Cfooter_0_0"
-              target="_blank"
-            >
-              快速搭建<i />
-            </a>
+            <Link to="/language/basic" className={`${this.props.className}-text-button`}>
+              了解更多
+              <i/>
+            </Link>
           </div>
         </QueueAnim>
         <TweenOne
-          animation={{ opacity: 0, type: 'from', delay: 400 }}
-          className={`${this.props.className}-down-wrapper`}
-        >
+          animation={{opacity: 0, type: 'from', delay: 400}}
+          className={`${this.props.className}-down-wrapper`}>
           <div key="down" className={`${this.props.className}-down`}>
             <TweenOne animation={{
               y: 5, yoyo: true, repeat: -1, duration: 900,
-            }}
-            >
-              <Icon type="down-circle-o" />
+            }}>
+              <Icon type="down-circle-o"/>
             </TweenOne>
           </div>
           <div
             className={`${this.props.className}-mouse`}
-            key="mouse"
-          >
+            key="mouse">
             <TweenOne
               className="mouse-bar"
               animation={{

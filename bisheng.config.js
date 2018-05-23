@@ -25,20 +25,39 @@ module.exports = {
   port: 4000,
   themeConfig: {
     home: '/',
-    sitename: 'One',
-    tagline: 'The one theme for bisheng',
-    github: {
-      user: 'sakitam-fdd',
-      repo: 'ol3Echarts',
-      type: 'star',
-      count: true
+    title: 'motion theme',
+    index: {
+      banner: {
+        title: 'Bisheng Motion Theme',
+        introduce: 'A bisheng theme base on motion',
+        content: '使用 Ant Motion 能够快速在 React 框架中使用动画。我们提供了单项，组合动画，以及整套解决方案',
+        more: {
+          label: '了解更多',
+          link: '/'
+        },
+        quickStart: {
+          label: '快速开始',
+          link: '/'
+        }
+      }
     },
-    nav: [
-      { name: '示例', href: '/examples/', key: 'examples' },
-      { name: '起步', href: '/guide/index', key: 'guide' },
-      { name: 'API', href: '/api/index', key: 'api' },
-      { name: '插件', href: '/plugins/index', key: 'plugins' }
-    ]
+    header: {
+      github: {
+        user: 'sakitam-fdd',
+        repo: 'ol3Echarts',
+        type: 'star',
+        count: true
+      },
+      nav: [
+        { name: '示例', href: '/examples/', key: 'examples' },
+        { name: '起步', href: '/guide/index', key: 'guide' },
+        { name: 'API', href: '/api/index', key: 'api' },
+        { name: '插件', href: '/plugins/index', key: 'plugins' }
+      ]
+    },
+    footer: {
+      copyright: 'sakitam-fdd'
+    }
   },
   webpackConfig (config) {
     // config.plugins.push(
