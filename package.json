@@ -67,7 +67,7 @@
     "react-document-title": "^2.0.1"
   },
   "peerDependencies": {
-    "bisheng": "^0.26.0",
+    "bisheng": "^0.28.3",
     "react": "^16.0.0"
   },
   "license": "MIT"

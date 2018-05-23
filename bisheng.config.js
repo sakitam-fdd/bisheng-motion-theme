@@ -15,9 +15,7 @@ function alertBabelConfig (rules) {
 
 module.exports = {
   root: '/',
-  source: {
-    guide: 'docs/guide'
-  },
+  source: './docs',
   output: './_site',
   theme: './src/index',
   htmlTemplate: './src/static/template.html',

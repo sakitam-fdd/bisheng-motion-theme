@@ -22,18 +22,16 @@ class Home extends React.Component {
 
   render() {
     const { themeConfig } = this.props
+    console.log(this.props)
     const banner = (themeConfig.index.banner &&
       isObject(themeConfig.index.banner) &&
       !isEmpty(themeConfig.index.banner)) ? themeConfig.index.banner : false
-    console.log(banner)
     return (
       <DocumentTitle title={themeConfig.title}>
         <div className="main-wrapper">
           <div className="nav-wrapper">
             <ScrollLink to="banner" showHeightActive={['100%', '30%']} toHash={false} />
-            <ScrollLink to="Introduce" showHeightActive="30%" toHash={false} />
-            <ScrollLink to="page2" showHeightActive={['30%', '70%']} toHash={false} />
-            <ScrollLink to="page3" showHeightActive="70%" toHash={false} />
+            <ScrollLink to="introduce" showHeightActive="100%" toHash={false} />
           </div>
           {
             banner ? (<Banner

@@ -10,13 +10,6 @@ import {Icon} from 'antd';
 TweenOne.plugins.push(SvgMorphPlugin);
 
 class Banner extends React.Component {
-  static contextTypes = {
-    title: PropTypes.string.isRequired,
-    introduce: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    more: PropTypes.object,
-    quickStart: PropTypes.object
-  }
 
   static propTypes = {
     className: PropTypes.string,
@@ -34,7 +27,6 @@ class Banner extends React.Component {
       more,
       quickStart
     } = this.props
-    console.log(banner)
     return (<ScrollElement id="banner" className={`${this.props.className}-wrapper`}>
       <svg className={`${this.props.className}-bg-center`} width="100%" viewBox="0 0 1200 800">
         <TweenOne
@@ -65,19 +57,16 @@ class Banner extends React.Component {
           type="bottom"
           className={`${this.props.className}-text`}
           delay={300}>
-          <h1 key="h1">Motion Design</h1>
-          <h3 key="h3">Animation specification and components of Ant Design.</h3>
-          <p key="p">
-            使用 Ant Motion 能够快速在 React 框架中使用动画。<br/>
-            我们提供了单项，组合动画，以及整套解决方案
-          </p>
-          <div key="button">
-            <Link to="/language/basic" className={`${this.props.className}-text-button`}>
-              了解更多
+          <h1 key="h1">{title}</h1>
+          <h3 key="h3">{introduce}</h3>
+          <p key="p">{content}</p>
+          <div key="button" className={`${this.props.className}-button`}>
+            <Link to={more.link} className={`${this.props.className}-text-button`}>
+              {more.label}
               <i/>
             </Link>
-            <Link to="/language/basic" className={`${this.props.className}-text-button`}>
-              了解更多
+            <Link to={quickStart.link} className={`${this.props.className}-text-button`}>
+              {quickStart.label}
               <i/>
             </Link>
           </div>

@@ -4,6 +4,7 @@ import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
 import QueueAnim from 'rc-queue-anim';
 import TweenOne from 'rc-tween-one';
 import { Link } from 'react-router';
+import Code from '../components/Code';
 
 class Introduce extends React.Component {
   static propTypes = {
@@ -17,18 +18,16 @@ class Introduce extends React.Component {
     pageData: {},
     utils: {},
     tweenAnim: {},
-    onButtonClick: () => {
-    },
+    onButtonClick: () => {},
   };
 
   render() {
     return (
-      <div className="home-page-wrapper page1">
+      <div className="main-page-wrapper introduce">
         <OverPack
           playScale={0.6}
           className="page vh"
-          id="page1"
-        >
+          id="introduce">
           <QueueAnim className="page-text" key="text" type="bottom" leaveReverse delay={100}>
             <h1 key="h1">AntMotion 让动效更简单</h1>
             <p key="p">
@@ -39,6 +38,7 @@ class Introduce extends React.Component {
             className="code-wrapper"
             animation={{ ...this.props.tweenAnim, delay: 200 }}
             key="code">
+            <Code className="code" pageData={this.props.pageData} utils={this.props.utils} />
           </TweenOne>
           <TweenOne
             key="a"
