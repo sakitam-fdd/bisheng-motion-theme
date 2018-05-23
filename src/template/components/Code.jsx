@@ -21,8 +21,8 @@ class Code extends React.Component {
     this.components = this.props.pageData;
     this.state = {
       code: this.props.utils
-        .toReactComponent(this.components['guide'].index.highlightedCode),
-      component: this.components['guide'].index.preview(React, ReactDom),
+        .toReactComponent(this.components['guide']['demo'].index.highlightedCode),
+      component: this.components['guide']['demo'].index.preview(React, ReactDom),
       replay: false,
       isMode: false,
       openCode: false,
