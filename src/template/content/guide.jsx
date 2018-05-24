@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import DocumentTitle from 'react-document-title';
 
-class Guide extends React.PureComponent {
+class Guide extends React.Component {
   componentDidMount() {
     const props = this.props;
     const { location } = props;

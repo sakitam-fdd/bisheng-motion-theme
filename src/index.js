@@ -1,5 +1,7 @@
 'use strict';
 const Guide = './template/content/guide';
+const Api = './template/content/api';
+const Plugins = './template/content/plugins';
 module.exports = {
   home: '/',
   plugins: [
@@ -18,6 +20,14 @@ module.exports = {
       {
         path: '/guide/:contentName',
         component: Guide
+      },
+      {
+        path: '/api/:contentName',
+        component: Api
+      },
+      {
+        path: '/plugins/:contentName',
+        component: Plugins
       }
     ]
   },
