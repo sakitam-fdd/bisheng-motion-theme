@@ -26,6 +26,9 @@ class Home extends React.Component {
     const banner = (themeConfig.index.banner &&
       isObject(themeConfig.index.banner) &&
       !isEmpty(themeConfig.index.banner)) ? themeConfig.index.banner : false
+    const introduce = (themeConfig.index.introduce &&
+      isObject(themeConfig.index.introduce) &&
+      !isEmpty(themeConfig.index.introduce)) ? themeConfig.index.introduce : false
     return (
       <DocumentTitle title={themeConfig.title}>
         <div className="main-wrapper">
@@ -41,11 +44,19 @@ class Home extends React.Component {
               more={banner.more}
               quickStart={banner.quickStart}/>) : ({})
           }
-          <Introduce
-            pageData={this.props.pageData}
-            utils={this.props.utils}
-            tweenAnim={this.tweenAnim}
-            onButtonClick={this.scrollToTop}/>
+          {
+            introduce ? (
+              <Introduce
+                pageData={this.props.pageData}
+                utils={this.props.utils}
+                tweenAnim={this.tweenAnim}
+                onButtonClick={this.scrollToTop}
+                title={banner.title}
+                introduce={banner.introduce}
+                content={banner.content}
+                more={banner.more}/>
+            ) : ({})
+          }
         </div>
       </DocumentTitle>
     );

@@ -37,6 +37,15 @@ module.exports = {
           label: '快速开始',
           link: '/'
         }
+      },
+      introduce: {
+        title: 'Bisheng Motion Theme',
+        introduce: 'A bisheng theme base on motion',
+        content: '使用 Ant Motion 能够快速在 React 框架中使用动画。我们提供了单项，组合动画，以及整套解决方案',
+        more: {
+          label: '了解更多',
+          link: '/'
+        }
       }
     },
     header: {

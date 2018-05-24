@@ -67,12 +67,10 @@ class Code extends React.Component {
       </div>
       <div className={`${this.props.className}-left ${this.state.openCode ? 'code-open' : ''}`}>
         {this.state.code}
-        <div className={`${this.props.className}-left-bar`}>
-          <div className={`${this.props.className}-left-bar-logo`}>
-            <img height="15" src="https://zos.alipayobjects.com/rmsportal/TOXWfHIUGHvZIyb.svg" />
-            <img height="8" src="https://zos.alipayobjects.com/rmsportal/glnFNVQMvQinmUr.svg" />
-          </div>
-        </div>
+        {/*<div className={`${this.props.className}-left-bar`}>*/}
+          {/*<div className={`${this.props.className}-left-bar-logo`}>*/}
+          {/*</div>*/}
+        {/*</div>*/}
         {this.state.isMode && (<div className={`${this.props.className}-close`} onClick={this.codeCloseClick}>
           <Icon type="close" />
         </div>)}
