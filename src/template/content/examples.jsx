@@ -34,8 +34,7 @@ class Examples extends React.Component {
         <TweenOne
           className={this.props.className}
           component="ul"
-          animation={{ y: 30, type: 'from', opacity: 0 }}
-        >
+          animation={{ y: 30, type: 'from', opacity: 0 }}>
           {listChildren}
         </TweenOne>
       </div>

@@ -13,3 +13,4 @@ import './styles/components/error-page.less';
 import './styles/content/exhibition.less';
 import './styles/main/main.less';
 import './styles/components/page.less';
+import './styles/content/examples.less';

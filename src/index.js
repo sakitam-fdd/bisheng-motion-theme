@@ -32,11 +32,11 @@ module.exports = {
         component: Plugins
       },
       {
-        path: '/examples',
+        path: '/examples/',
         component: Examples
       },
       {
-        path: '/examples/:contentName',
+        path: '/examples/demo/:contentName',
         component: Details
       }
     ]
