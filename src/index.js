@@ -2,6 +2,8 @@
 const Guide = './template/content/guide';
 const Api = './template/content/api';
 const Plugins = './template/content/plugins';
+const Examples = './template/content/examples';
+const Details = './template/components/Details';
 module.exports = {
   home: '/',
   plugins: [
@@ -28,7 +30,15 @@ module.exports = {
       {
         path: '/plugins/:contentName',
         component: Plugins
+      },
+      {
+        path: '/examples',
+        component: Examples
+      },
+      {
+        path: '/examples/:contentName',
+        component: Details
       }
     ]
-  },
+  }
 };

@@ -8,14 +8,7 @@ import MobileMenu from 'rc-drawer-menu';
 import {scrollClick} from '../utils';
 
 class Page extends React.PureComponent {
-  static propTypes = {
-    className: PropTypes.string,
-    pathname: PropTypes.string,
-    isMobile: PropTypes.bool,
-    pageData: PropTypes.any,
-    hash: PropTypes.any,
-    children: PropTypes.any,
-  };
+  static propTypes = {};
 
   static defaultProps = {
     className: 'page',
@@ -36,18 +29,7 @@ class Page extends React.PureComponent {
   componentDidUpdate () {
     this.hash = null;
     this.state.isHash = false;
-    const props = this.props;
-    const pathNames = props.pathname.split('/');
-    const isComponent = pathNames[0] === 'components';
-    if (isComponent) {
-      if (window.addEventListener) {
-        window.addEventListener('scroll', this.onScroll);
-      } else {
-        window.attachEvent('onscroll', this.onScroll);
-      }
-    } else {
-      this.componentWillUnmount();
-    }
+    this.componentWillUnmount();
   }
 
   componentWillUnmount () {
@@ -81,13 +63,11 @@ class Page extends React.PureComponent {
     return moduleData;
   };
 
-  getMenuItems (moduleData, pathNames, isComponent, isNav) {
+  getMenuItems (moduleData) {
     if (!moduleData) {
       return null;
     }
     const splicingListArr = [];
-    if (pathNames[0] === 'guide') {
-    }
     const children = moduleData.concat(splicingListArr).filter(item => !item.meta.hidden)
       .sort((a, b) => a.meta.order - b.meta.order);
     return children.map((item, i) => {
@@ -118,50 +98,19 @@ class Page extends React.PureComponent {
     });
   }
 
-  getTransitionEnd = () => {
-    const transEndEventNames = {
-      transition: 'transitionend',
-      WebkitTransition: 'webkitTransitionEnd',
-      MozTransition: 'transitionend',
-      OTransition: 'oTransitionEnd otransitionend',
-    };
-    return Object.keys(transEndEventNames).map((name) => {
-      if (typeof document.body.style[name] === 'string') {
-        return transEndEventNames[name];
-      }
-      return null;
-    }).filter(item => item)[0];
-  };
-
-  getListChildren = (cPathNames, cModuleData, isPlugins) => {
-    const {
-      isMobile, pageData, hash, pathname,
-    } = this.props;
-    const pathNames = cPathNames;
-    const isApi = pathNames[0] === 'api';
-    const componentBool = isPlugins && !isMobile;
-
-    const moduleData = componentBool ?
-      this.getModuleData(pageData[pathNames[0]][pathNames[1]]) :
-      cModuleData;
-
-    const listToRender = moduleData && this.getMenuItems(
-      componentBool ?
-        moduleData.demo : moduleData[pathNames[0]],
-      componentBool ? hash : pathNames, componentBool
-    );
-
-    const listKey = pathNames[0] === 'plugins' && !pathname.match('api') ?
-      pathname : pathNames[0];
-    return (!isMobile ? (listToRender && (<Affix offsetTop={60} key="list" className="nav-list-wrapper">
+  getListChildren = (moduleData) => {
+    const {pageData} = this.props;
+    const isMobile = false;
+    // const listToRender = moduleData && this.getMenuItems(moduleData.demo);
+    const listToRender = false;
+    const listKey = 'api';
+    return (!isMobile ? (listToRender && (
+      <Affix offsetTop={60} key="list" className="nav-list-wrapper">
         <QueueAnim
           type={['bottom', 'top']}
           duration={450}
           ease="easeInOutQuad"
           className="nav-list">
-          <h2 key={`${pathname.split('/')[0]}-title`}>
-            {title[pathNames[0]]}
-          </h2>
           <ul key={listKey}>
             {listToRender}
           </ul>
@@ -170,9 +119,6 @@ class Page extends React.PureComponent {
       (<MobileMenu width="180px">
           <div className="nav-list-wrapper">
             <div className="nav-list">
-              <h2 key={`${pathname.split('/')[0]}-title`}>
-                {isApi ? 'API' : title[pathNames[0]]}
-              </h2>
               <ul>
                 {listToRender}
               </ul>
@@ -188,26 +134,11 @@ class Page extends React.PureComponent {
   };
 
   render () {
-    const {
-      className, pathname, isMobile, pageData, children,
-    } = this.props;
-    const pathNames = pathname.split('/');
+    console.log(this.props)
+    const {className, pageData, children} = this.props;
     const moduleData = this.getModuleData(pageData);
-    const navHeaderRender = null;
-    // const navHeaderRender = isPlugins && !isMobile ?
-    //   this.getMenuItems(moduleData[pathNames[0]], pathNames, false, true) : null;
-    const listToRender = this.getListChildren(pathNames, moduleData, false);
+    const listToRender = this.getListChildren(moduleData);
     return (<div className={className}>
-      {!isMobile && (<TweenOneGroup
-        enter={{height: 0, type: 'from', ease: 'easeInOutCubic'}}
-        leave={{height: 0, ease: 'easeInOutCubic'}}
-        component="">
-        {navHeaderRender && (<div key="nav" className={`${className}-nav`}>
-          <ul>
-            {navHeaderRender}
-          </ul>
-        </div>)}
-      </TweenOneGroup>)}
       <TweenOneGroup
         enter={{
           y: 30,
@@ -227,7 +158,7 @@ class Page extends React.PureComponent {
             leave={{y: -30, opacity: 0}}
             className={`${className}-content`}
             style={{minHeight: this.state.minHeight}}>
-            <div key={pathname}>{children}</div>
+            <div>{children}</div>
           </TweenOneGroup>
         </section>
       </TweenOneGroup>

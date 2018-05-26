@@ -1,4 +1,5 @@
 import React from 'react';
+import Input from 'antd/lib/input';
 import ReactDOM from 'react-dom';
 import './index.css';
 

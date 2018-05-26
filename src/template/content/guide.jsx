@@ -1,68 +1,48 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import { getChildren } from 'jsonml.js/lib/utils';
 import DocumentTitle from 'react-document-title';
+import * as utils from '../utils';
+import Page from '../components/Page'
 
 class Guide extends React.Component {
-  componentDidMount() {
-    const props = this.props;
-    const { location } = props;
-    this.hash = location.hash;
-    if (window.addEventListener) {
-      window.addEventListener('scroll', this.onScroll);
-    } else {
-      window.attachEvent('onscroll', this.onScroll);
-    }
-  }
+  static propTypes = {};
 
-  componentWillUnmount() {
-    if (window.addEventListener) {
-      window.removeEventListener('scroll', this.onScroll);
-    } else {
-      window.detachEvent('onscroll', this.onScroll);
-    }
-  }
-
-  onScroll = () => {
-    const tops = this.demoIds.map((item) => {
-      const dom = document.getElementById(item);
-      let top = dom.getBoundingClientRect().top;
-      if (top < 0) {
-        top = -top;
-      }
-      return top;
-    });
-    const t = Math.min.apply(null, tops);
-    const id = this.demoIds[tops.indexOf(t)];
-    const link = `#${id}`;
-    if (this.hash !== link) {
-      /* eslint-disable no-restricted-globals */
-      history.pushState(null, window.title, `#${id}`);
-      this.hash = link;
-    }
-  };
+  static defaultProps = {};
 
   render() {
-    const props = this.props;
-    const { pageData } = props;
-    const { meta, description } = pageData.index;
-    const {
-      title, subtitle, chinese, english,
-    } = meta;
-    return (<DocumentTitle title={`${subtitle || chinese || ''} ${title || english}`}>
-      <article className="markdown">
-        <h1>{title || english}
-          <i>{subtitle || chinese}</i>
-        </h1>
-      </article>
-    </DocumentTitle>);
+    const {meta, content, toc, api} = this.props.pageData;
+    const {title, subtitle, chinese, english} = meta;
+    const tocItem = this.props.utils.toReactComponent(toc);
+    const tocChildren = utils.toArrayChildren(tocItem.props.children).map((item) => {
+      const itemChildren = utils.toArrayChildren(item.props.children).map(cItem =>
+        React.cloneElement(cItem, {
+          onClick: utils.scrollClick,
+        }));
+      return React.cloneElement(item, item.props, itemChildren);
+    });
+    return (
+      <Page
+        {...this.props}>
+        <DocumentTitle title={`${title || chinese || english} - Ant Motion`}>
+          <article className="markdown">
+            <h1>
+              {title || english}
+              {(!subtitle && !chinese) ? null : <i>{subtitle || chinese}</i>}
+            </h1>
+            {!toc || toc.length <= 1 ? null :
+              (<section className="toc">
+                {React.cloneElement(tocItem, tocItem.props, tocChildren)}
+              </section>)}
+            {!content ? null :
+              this.props.utils.toReactComponent(['section', { className: 'markdown' }]
+                .concat(getChildren(content)))}
+            {api ? this.props.utils.toReactComponent(api) : null}
+          </article>
+        </DocumentTitle>
+      </Page>
+    );
   }
 }
 
-Guide.propTypes = {
-  params: PropTypes.any,
-};
-
-Guide.defaultProps = {};
-
 export default Guide;
+

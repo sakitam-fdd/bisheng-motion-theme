@@ -24,13 +24,23 @@ $ npm install rc-animate --save
 ### 使用
 
 ```jsx
-var Animate = require('rc-animate');
-var ReactDOM = require('react-dom');
-ReactDOM.render((
-  <Animate showProp="visible" transitionName="fade">
-    {show ? <div visible key="1">示例</div> : null}
-  </Animate>
-), container);
+import Input from 'antd/lib/input';
+
+class LogoGather extends React.Component {
+  render() {
+    return (
+      <div className="logo-gather-demo-wrapper">112</div>
+    );
+  }
+}
+class Edit extends React.Component {
+  render() {
+    return (<div>测试</div>);
+  }
+}
+ReactDOM.render(
+  <Edit />
+, mountNode);
 ```
 > [查看详细使用](https://github.com/react-component/animate/blob/master/docs/zh-cn/intro.md)
 
