@@ -14,7 +14,7 @@ function alertBabelConfig (rules) {
 }
 
 module.exports = {
-  root: '/',
+  root: './',
   source: './docs',
   output: './_site',
   theme: './src/index',
@@ -61,7 +61,7 @@ module.exports = {
     header: {
       github: {
         user: 'sakitam-fdd',
-        repo: 'ol3Echarts',
+        repo: 'bisheng-motion-theme',
         type: 'star',
         count: true
       },
