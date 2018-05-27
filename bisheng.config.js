@@ -23,6 +23,7 @@ module.exports = {
   port: 4000,
   themeConfig: {
     home: '/',
+    source: 'docs',
     title: 'motion theme',
     index: {
       banner: {
@@ -41,7 +42,7 @@ module.exports = {
       introduce: {
         title: 'Bisheng Motion Theme',
         introduce: 'A bisheng theme base on motion',
-        content: '使用 Ant Motion 能够快速在 React 框架中使用动画。我们提供了单项，组合动画，以及整套解决方案',
+        content: '使用 Bisheng Motion Theme 可以让你快速构建基于基于 Bisheng 的文档展示网站。',
         more: {
           label: '了解更多',
           link: '/'
@@ -50,7 +51,7 @@ module.exports = {
       exhibition: {
         title: 'Bisheng Motion Theme',
         introduce: 'A bisheng theme base on motion',
-        content: '使用 Ant Motion 能够快速在 React 框架中使用动画。我们提供了单项，组合动画，以及整套解决方案',
+        content: '不仅提供了 Api 的展示，也包含了解析后的示例的相关展示。',
         more: {
           label: '更多示例',
           link: '/'
@@ -72,7 +73,7 @@ module.exports = {
       ]
     },
     footer: {
-      copyright: 'sakitam-fdd'
+      copyright: 'bisheng'
     }
   },
   webpackConfig (config) {

@@ -62,7 +62,7 @@ class Exhibition extends React.Component {
           <TweenOne
             animation={{ delay: 200, ...this.props.tweenAnim }}
             key="img"
-            className="home-anim-demo">
+            className="home-anim-demo clearfix">
             <ul>
               {demoToChildren}
             </ul>

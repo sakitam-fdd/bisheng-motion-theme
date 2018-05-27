@@ -10,7 +10,8 @@ class Api extends React.Component {
   static defaultProps = {};
 
   render() {
-    const {meta, content, toc, api} = this.props.pageData;
+    const { pageData, themeConfig } = this.props;
+    const {meta, content, toc, api} = pageData;
     const {title, subtitle, chinese, english} = meta;
     const tocItem = this.props.utils.toReactComponent(toc);
     const tocChildren = utils.toArrayChildren(tocItem.props.children).map((item) => {
@@ -23,7 +24,7 @@ class Api extends React.Component {
     return (
       <Page
         {...this.props}>
-        <DocumentTitle title={`${title || chinese || english} - Ant Motion`}>
+        <DocumentTitle title={`${title || chinese || english} - ${themeConfig.title}`}>
           <article className="markdown">
             <h1>
               {title || english}

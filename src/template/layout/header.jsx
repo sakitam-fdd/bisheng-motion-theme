@@ -62,7 +62,7 @@ class Header extends React.Component {
 
   render () {
     const { isMobile } = this.context;
-    const { themeConfig } = this.props
+    const { themeConfig } = this.props;
     const isShowGithub = themeConfig && themeConfig.header && themeConfig.header.hasOwnProperty('github')
     const _github = isShowGithub ? `https://ghbtns.com/github-btn.html?user=${themeConfig.header.github.user}&repo=${themeConfig.header.github.repo}&type=${themeConfig.header.github.type}&count=${themeConfig.header.github.count}` : ''
     const navToRender = themeConfig.header.nav.map((item) => {

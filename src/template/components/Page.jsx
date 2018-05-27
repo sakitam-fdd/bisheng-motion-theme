@@ -8,7 +8,9 @@ import MobileMenu from 'rc-drawer-menu';
 import {scrollClick} from '../utils';
 
 class Page extends React.PureComponent {
-  static propTypes = {};
+  static propTypes = {
+    pageData: PropTypes.object
+  };
 
   static defaultProps = {
     className: 'page',
@@ -63,47 +65,44 @@ class Page extends React.PureComponent {
     return moduleData;
   };
 
-  getMenuItems (moduleData) {
+  getMenuItems (moduleData, pathNames) {
     if (!moduleData) {
       return null;
     }
+    const { themeConfig } = this.props;
+    const source = themeConfig.source;
     const splicingListArr = [];
     const children = moduleData.concat(splicingListArr).filter(item => !item.meta.hidden)
       .sort((a, b) => a.meta.order - b.meta.order);
     return children.map((item, i) => {
       const meta = item.meta;
-      let link = meta.filename.replace(/(.md)/g, '');
+      const _link = meta.filename.replace(new RegExp(source), '');
+      const link = _link.replace(/(\.md)/g, '');
       const path = Array.isArray(pathNames) ? pathNames.join('/') : pathNames.replace('#', '');
       const hash = this.state.isHash && this.hash.replace('#', '');
-      const className = hash === meta.id || path === link ||
+      const className = hash === meta.id || path === link || `/${path}` === link ||
       (!hash && ((!path && i === 0) || path === meta.id)) ? 'active' : '';
       let linkToChildren = link.split('/')[1] === pathNames[1] ?
         (<a>
-          {isNav ? meta.chinese : <span>{meta.chinese || meta.english}</span>}
+          <span>{meta.chinese || meta.english}</span>
         </a>) :
         (<Link to={link}>
-          {isNav ? meta.chinese : <span>{meta.chinese || meta.english}</span>}
+          <span>{meta.chinese || meta.english}</span>
         </Link>);
-      linkToChildren = isComponent ?
-        (<a href={`#${meta.id}`} onClick={this.cScrollClick}>
-          {meta.title}
-        </a>) : linkToChildren;
       return (<li
         key={meta.english || meta.chinese || meta.id}
         className={className}
-        disabled={meta.disabled}
-        style={isNav ? {width: `${100 / children.length}%`} : null}>
+        disabled={meta.disabled}>
         {linkToChildren}
       </li>);
     });
   }
 
-  getListChildren = (moduleData) => {
-    const {pageData} = this.props;
+  getListChildren = (moduleData, pathNames, pathKey) => {
     const isMobile = false;
-    // const listToRender = moduleData && this.getMenuItems(moduleData.demo);
-    const listToRender = false;
-    const listKey = 'api';
+    const { themeConfig } = this.props;
+    const _title = themeConfig.header.nav.filter(_item => _item['key'] === pathKey)
+    const listToRender = moduleData && this.getMenuItems(moduleData[pathNames[0]], pathNames);
     return (!isMobile ? (listToRender && (
       <Affix offsetTop={60} key="list" className="nav-list-wrapper">
         <QueueAnim
@@ -111,7 +110,14 @@ class Page extends React.PureComponent {
           duration={450}
           ease="easeInOutQuad"
           className="nav-list">
-          <ul key={listKey}>
+          {
+            _title && _title.length > 0 ? (
+              <h2 key={`${pathKey}-title`}>
+                {_title[0]['name']}
+              </h2>
+            ) : ({})
+          }
+          <ul key={pathKey}>
             {listToRender}
           </ul>
         </QueueAnim>
@@ -134,10 +140,11 @@ class Page extends React.PureComponent {
   };
 
   render () {
-    console.log(this.props)
-    const {className, pageData, children} = this.props;
-    const moduleData = this.getModuleData(pageData);
-    const listToRender = this.getListChildren(moduleData);
+    const {className, location, data, children} = this.props;
+    const pathNames = location.pathname && location.pathname.split('/');
+    const pathKey = pathNames && pathNames.length > 0 && pathNames[0];
+    const moduleData = this.getModuleData(data, pathNames);
+    const listToRender = this.getListChildren(moduleData, pathNames, pathKey);
     return (<div className={className}>
       <TweenOneGroup
         enter={{

@@ -58,7 +58,7 @@ class Index extends React.Component {
     const path = this.props.location.pathname;
     const pathKey = path && path.split('/')[0];
     return (<div id="react-root" className={!pathKey ? 'index' : ''}>
-      <Header {...restProps} />
+      <Header activeKey={pathKey} {...restProps} />
       <TweenOne.TweenOneGroup
         className="content-wrapper"
         onEnd={this.onChange}

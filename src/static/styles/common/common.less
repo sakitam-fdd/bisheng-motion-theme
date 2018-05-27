@@ -6,6 +6,18 @@ body {
   background: #fff;
 }
 
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
 @header: header;
 .@{header}-wrapper {
   height: 64px;

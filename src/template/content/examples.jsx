@@ -15,12 +15,16 @@ class Examples extends React.Component {
   };
 
   render() {
-    const demo = this.props.pageData.demo;
+    const { pageData, themeConfig } = this.props
+    const demo = pageData.demo;
+    const source = themeConfig.source;
+    console.log(this)
     const listChildren = Object.keys(demo).map(key => demo[key])
       .sort((a, b) => b.meta.order - a.meta.order)
       .map((item) => {
         const img = item.meta.image;
-        const link = item.meta.filename.replace(/(\/index)|(.md)/g, '');
+        const _link = item.meta.filename.replace(new RegExp(source), '');
+        const link = _link.replace(/(\/index\.md)/g, '/index');
         const title = item.meta.chinese || item.meta.english;
         return (<li key={link}>
           <Link to={link}>
@@ -38,9 +42,9 @@ class Examples extends React.Component {
           {listChildren}
         </TweenOne>
       </div>
-      <DocumentTitle title="动效展示 - Ant Motion" />
+      <DocumentTitle title={`示例 - ${themeConfig.title}`} />
     </div>);
   }
-};
+}
 
 export default Examples;

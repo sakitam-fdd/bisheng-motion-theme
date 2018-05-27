@@ -37,8 +37,7 @@ class Details extends React.Component {
 
   render() {
     const props = this.props;
-    // const { pageData, className } = props;
-    const pageData = this.props.pageData;
+    const { pageData, themeConfig } = this.props;
     const className = this.props.className;
     const {
       meta, content, description,
@@ -47,7 +46,7 @@ class Details extends React.Component {
     const {
       title, subtitle, chinese, english,
     } = meta;
-    return (<DocumentTitle title={`${subtitle || chinese || ''} ${title || english} - Ant Motion`}>
+    return (<DocumentTitle title={`${subtitle || chinese || ''} ${title || english} - ${themeConfig.title}`}>
       <div className="page">
         <TweenOne animation={{ y: 30, opacity: 0, type: 'from' }} className="page-wrapper">
           <article className={`markdown ${className}`}>
