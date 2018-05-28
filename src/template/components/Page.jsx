@@ -13,7 +13,7 @@ class Page extends React.PureComponent {
   };
 
   static defaultProps = {
-    className: 'page',
+    className: 'page'
   };
 
   constructor (props) {
@@ -69,7 +69,7 @@ class Page extends React.PureComponent {
     if (!moduleData) {
       return null;
     }
-    const { themeConfig } = this.props;
+    const {themeConfig} = this.props;
     const source = themeConfig.source;
     const splicingListArr = [];
     const children = moduleData.concat(splicingListArr).filter(item => !item.meta.hidden)
@@ -100,28 +100,28 @@ class Page extends React.PureComponent {
 
   getListChildren = (moduleData, pathNames, pathKey) => {
     const isMobile = false;
-    const { themeConfig } = this.props;
+    const {themeConfig} = this.props;
     const _title = themeConfig.header.nav.filter(_item => _item['key'] === pathKey)
     const listToRender = moduleData && this.getMenuItems(moduleData[pathNames[0]], pathNames);
     return (!isMobile ? (listToRender && (
-      <Affix offsetTop={60} key="list" className="nav-list-wrapper">
-        <QueueAnim
-          type={['bottom', 'top']}
-          duration={450}
-          ease="easeInOutQuad"
-          className="nav-list">
-          {
-            _title && _title.length > 0 ? (
-              <h2 key={`${pathKey}-title`}>
-                {_title[0]['name']}
-              </h2>
-            ) : ({})
-          }
-          <ul key={pathKey}>
-            {listToRender}
-          </ul>
-        </QueueAnim>
-      </Affix>)) :
+        <Affix offsetTop={60} key="list" className="nav-list-wrapper">
+          <QueueAnim
+            type={['bottom', 'top']}
+            duration={450}
+            ease="easeInOutQuad"
+            className="nav-list">
+            {
+              _title && _title.length > 0 ? (
+                <h2 key={`${pathKey}-title`}>
+                  {_title[0]['name']}
+                </h2>
+              ) : ({})
+            }
+            <ul key={pathKey}>
+              {listToRender}
+            </ul>
+          </QueueAnim>
+        </Affix>)) :
       (<MobileMenu width="180px">
           <div className="nav-list-wrapper">
             <div className="nav-list">

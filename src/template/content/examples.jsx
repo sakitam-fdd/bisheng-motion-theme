@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TweenOne from 'rc-tween-one';
 import DocumentTitle from 'react-document-title';
-import { Link } from 'react-router';
+import {Link} from 'react-router';
 
 class Examples extends React.Component {
   static propTypes = {
@@ -14,8 +14,8 @@ class Examples extends React.Component {
     className: 'examples-list',
   };
 
-  render() {
-    const { pageData, themeConfig } = this.props
+  render () {
+    const {pageData, themeConfig} = this.props
     const demo = pageData.demo;
     const source = themeConfig.source;
     console.log(this)
@@ -28,7 +28,7 @@ class Examples extends React.Component {
         const title = item.meta.chinese || item.meta.english;
         return (<li key={link}>
           <Link to={link}>
-            <img src={img} width="100%" />
+            <img src={img} width="100%"/>
           </Link>
           <h3>{title}</h3>
         </li>);
@@ -38,11 +38,11 @@ class Examples extends React.Component {
         <TweenOne
           className={this.props.className}
           component="ul"
-          animation={{ y: 30, type: 'from', opacity: 0 }}>
+          animation={{y: 30, type: 'from', opacity: 0}}>
           {listChildren}
         </TweenOne>
       </div>
-      <DocumentTitle title={`示例 - ${themeConfig.title}`} />
+      <DocumentTitle title={`示例 - ${themeConfig.title}`}/>
     </div>);
   }
 }

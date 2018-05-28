@@ -1,5 +1,5 @@
 import React from 'react';
-import { getChildren } from 'jsonml.js/lib/utils';
+import {getChildren} from 'jsonml.js/lib/utils';
 import DocumentTitle from 'react-document-title';
 import * as utils from '../utils';
 import Page from '../components/Page'
@@ -9,8 +9,8 @@ class Article extends React.Component {
 
   static defaultProps = {};
 
-  render() {
-    const { pageData, themeConfig } = this.props;
+  render () {
+    const {pageData, themeConfig} = this.props;
     const {meta, content, toc, api} = pageData;
     const {title, subtitle, chinese, english} = meta;
     const tocItem = this.props.utils.toReactComponent(toc);
@@ -35,7 +35,7 @@ class Article extends React.Component {
                 {React.cloneElement(tocItem, tocItem.props, tocChildren)}
               </section>)}
             {!content ? null :
-              this.props.utils.toReactComponent(['section', { className: 'markdown' }]
+              this.props.utils.toReactComponent(['section', {className: 'markdown'}]
                 .concat(getChildren(content)))}
             {api ? this.props.utils.toReactComponent(api) : null}
           </article>

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
-import { Layout, Button } from 'antd';
-const { Header, Footer, Content } = Layout;
+import {Link} from 'react-router';
+import {Button} from 'antd';
 import logo from '../static/images/404.svg'
+
 class NotFound extends React.Component {
-  render() {
+  render () {
     return <div className="page-404 status-content">
       <section>
         <p>

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import PropTypes from 'prop-types';
-import { Icon } from 'antd';
-import { enquireScreen } from 'enquire-js';
+import {Icon} from 'antd';
+import {enquireScreen} from 'enquire-js';
 
 class Code extends React.Component {
   static propTypes = {
@@ -15,9 +15,8 @@ class Code extends React.Component {
     className: 'code',
   };
 
-  constructor(props) {
+  constructor (props) {
     super(props);
-    console.log(this.props)
     this.components = this.props.pageData;
     this.state = {
       code: this.props.utils
@@ -29,10 +28,9 @@ class Code extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     enquireScreen((bool) => {
-      const isMode = bool;
-      this.setState({ isMode });
+      this.setState({bool});
     });
   }
 
@@ -58,32 +56,32 @@ class Code extends React.Component {
     });
   };
 
-  render() {
+  render () {
     return (<div className={this.props.className}>
       <div className={`${this.props.className}-top`}>
-        <i />
-        <i />
-        <i />
+        <i/>
+        <i/>
+        <i/>
       </div>
       <div className={`${this.props.className}-left ${this.state.openCode ? 'code-open' : ''}`}>
         {this.state.code}
         {/*<div className={`${this.props.className}-left-bar`}>*/}
-          {/*<div className={`${this.props.className}-left-bar-logo`}>*/}
-          {/*</div>*/}
+        {/*<div className={`${this.props.className}-left-bar-logo`}>*/}
+        {/*</div>*/}
         {/*</div>*/}
         {this.state.isMode && (<div className={`${this.props.className}-close`} onClick={this.codeCloseClick}>
-          <Icon type="close" />
+          <Icon type="close"/>
         </div>)}
       </div>
       <div className={`${this.props.className}-right`}>
         {this.state.replay ? null : this.state.component}
         <div className="replay-button">
-          <i onClick={this.onClick} />
+          <i onClick={this.onClick}/>
         </div>
       </div>
       {
         this.state.isMode && (<div className={`${this.props.className}-icon`} onClick={this.codeClick}>
-          <Icon type="code-o" />
+          <Icon type="code-o"/>
         </div>)
       }
     </div>);

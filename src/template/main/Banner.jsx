@@ -6,7 +6,6 @@ import ScrollElement from 'rc-scroll-anim/lib/ScrollElement';
 import SvgMorphPlugin from 'rc-tween-one/lib/plugin/SvgMorphPlugin';
 import {Link} from 'react-router';
 import {Icon} from 'antd';
-
 TweenOne.plugins.push(SvgMorphPlugin);
 
 class Banner extends React.Component {
@@ -26,7 +25,7 @@ class Banner extends React.Component {
       content,
       more,
       quickStart
-    } = this.props
+    } = this.props;
     return (<ScrollElement id="banner" className={`${this.props.className}-wrapper`}>
       <svg className={`${this.props.className}-bg-center`} width="100%" viewBox="0 0 1200 800">
         <TweenOne

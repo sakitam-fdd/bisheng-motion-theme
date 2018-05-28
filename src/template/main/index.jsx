@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
 import ScrollLink from 'rc-scroll-anim/lib/ScrollLink';
-import { isObject, isEmpty, scrollTo } from '../utils';
+import {isObject, isEmpty, scrollTo} from '../utils';
 import Banner from './Banner';
 import Introduce from './introduce';
 import Exhibition from './exhibition'
@@ -14,10 +14,13 @@ class Home extends React.Component {
     utils: PropTypes.object,
   };
 
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.tweenAnim = {
-      y: 30, opacity: 0, type: 'from', ease: 'easeOutQuad',
+      y: 30,
+      opacity: 0,
+      type: 'from',
+      ease: 'easeOutQuad'
     };
   }
 
@@ -25,8 +28,8 @@ class Home extends React.Component {
     scrollTo(0);
   };
 
-  render() {
-    const { themeConfig } = this.props
+  render () {
+    const {themeConfig} = this.props
     const banner = (themeConfig.index.banner &&
       isObject(themeConfig.index.banner) &&
       !isEmpty(themeConfig.index.banner)) ? themeConfig.index.banner : false;
@@ -40,9 +43,9 @@ class Home extends React.Component {
       <DocumentTitle title={themeConfig.title}>
         <div className="main-wrapper">
           <div className="nav-wrapper">
-            <ScrollLink to="banner" showHeightActive={['100%', '30%']} toHash={false} />
-            <ScrollLink to="introduce" showHeightActive="40%" toHash={false} />
-            <ScrollLink to="exhibition" showHeightActive={['40%', '100%']} toHash={false} />
+            <ScrollLink to="banner" showHeightActive={['100%', '30%']} toHash={false}/>
+            <ScrollLink to="introduce" showHeightActive="40%" toHash={false}/>
+            <ScrollLink to="exhibition" showHeightActive={['40%', '100%']} toHash={false}/>
           </div>
           {
             banner ? (<Banner
@@ -72,7 +75,7 @@ class Home extends React.Component {
                 utils={this.props.utils}
                 tweenAnim={this.tweenAnim}
                 exhibition={exhibition}
-                onButtonClick={this.scrollToTop} />
+                onButtonClick={this.scrollToTop}/>
             ) : ({})
           }
         </div>

@@ -129,7 +129,7 @@ const isEmpty = function (object) {
  */
 const bind = function (fn, context) {
   const args = arguments.length > 2 ? Array.prototype.slice.call(arguments, 2) : null;
-  return function() {
+  return function () {
     return fn.apply(context, args || arguments);
   }
 };

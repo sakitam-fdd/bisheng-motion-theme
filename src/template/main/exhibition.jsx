@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
 import QueueAnim from 'rc-queue-anim';
 import TweenOne from 'rc-tween-one';
-
-import { Link } from 'react-router';
+import {Link} from 'react-router';
 
 class Exhibition extends React.Component {
   static propTypes = {
@@ -23,8 +22,8 @@ class Exhibition extends React.Component {
     exhibition: {}
   };
 
-  render() {
-    const { pageData, exhibition, utils } = this.props;
+  render () {
+    const {pageData, exhibition, utils} = this.props;
     const examples = pageData['examples']['demo']
     const demoToChildren = Object.keys(examples)
       .map(key => examples[key])
@@ -37,7 +36,7 @@ class Exhibition extends React.Component {
         const content = utils.toReactComponent(item.description);
         return (<li key={link}>
           <Link to={link} onClick={this.props.onButtonClick}>
-            <div className="home-anim-demo-img"><img src={img} width="100%" /></div>
+            <div className="home-anim-demo-img"><img src={img} width="100%"/></div>
             <h2>{title}</h2>
             <div className="home-anim-demo-text">{content}</div>
           </Link>
@@ -60,7 +59,7 @@ class Exhibition extends React.Component {
             <p key="p">{exhibition.content}</p>
           </QueueAnim>
           <TweenOne
-            animation={{ delay: 200, ...this.props.tweenAnim }}
+            animation={{delay: 200, ...this.props.tweenAnim}}
             key="img"
             className="home-anim-demo clearfix">
             <ul>
@@ -69,7 +68,7 @@ class Exhibition extends React.Component {
           </TweenOne>
           <TweenOne
             key="a"
-            animation={{ delay: 300, ...this.props.tweenAnim }}
+            animation={{delay: 300, ...this.props.tweenAnim}}
             className="home-button">
             <Link to={exhibition.more.link} onClick={this.props.onButtonClick}>{exhibition.more.label}</Link>
           </TweenOne>

@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import TweenOne from 'rc-tween-one';
-import { enquireScreen } from 'enquire-js';
-import '../../static/style';
+import {enquireScreen} from 'enquire-js';
 import Header from './header';
 import Footer from './footer';
 
@@ -35,7 +34,7 @@ class Index extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     enquireScreen((b) => {
       this.setState({
         isMobile: !!b,
@@ -47,14 +46,13 @@ class Index extends React.Component {
     if (e.type === 'enter') {
       const dom = ReactDOM.findDOMNode(this.content);
       Array.prototype.slice.call(dom.children).forEach((item) => {
-        const cItem = item;
-        cItem.style.transform = 'none';
+        item.style.transform = 'none';
       });
     }
   };
 
-  render() {
-    const { children, ...restProps } = this.props
+  render () {
+    const {children, ...restProps} = this.props
     const path = this.props.location.pathname;
     const pathKey = path && path.split('/')[0];
     return (<div id="react-root" className={!pathKey ? 'index' : ''}>
@@ -62,9 +60,11 @@ class Index extends React.Component {
       <TweenOne.TweenOneGroup
         className="content-wrapper"
         onEnd={this.onChange}
-        enter={{ type: 'from', opacity: 0, ease: 'easeOutQuart' }}
-        leave={{ opacity: 0, ease: 'easeInOutQuart' }}
-        ref={(c) => { this.content = c; }}>
+        enter={{type: 'from', opacity: 0, ease: 'easeOutQuart'}}
+        leave={{opacity: 0, ease: 'easeInOutQuart'}}
+        ref={(c) => {
+          this.content = c;
+        }}>
         {children}
       </TweenOne.TweenOneGroup>
       <Footer {...restProps} />

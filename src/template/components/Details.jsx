@@ -14,14 +14,14 @@ class Details extends React.Component {
     className: 'examples-details',
   };
 
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       replay: false,
     };
   }
 
-  shouldComponentUpdate() {
+  shouldComponentUpdate () {
     return this.state.replay;
   }
 
@@ -35,9 +35,9 @@ class Details extends React.Component {
     });
   };
 
-  render() {
+  render () {
     const props = this.props;
-    const { pageData, themeConfig } = this.props;
+    const {pageData, themeConfig} = this.props;
     const className = this.props.className;
     const {
       meta, content, description,
@@ -48,13 +48,13 @@ class Details extends React.Component {
     } = meta;
     return (<DocumentTitle title={`${subtitle || chinese || ''} ${title || english} - ${themeConfig.title}`}>
       <div className="page">
-        <TweenOne animation={{ y: 30, opacity: 0, type: 'from' }} className="page-wrapper">
+        <TweenOne animation={{y: 30, opacity: 0, type: 'from'}} className="page-wrapper">
           <article className={`markdown ${className}`}>
             <div className={`${className}-demo`}>
               {!this.state.replay && preview(React, ReactDOM)}
             </div>
             <div className="replay-button">
-              <i onClick={this.onClick} />
+              <i onClick={this.onClick}/>
             </div>
             <h1>
               {title || english}
@@ -63,12 +63,12 @@ class Details extends React.Component {
             {props.utils.toReactComponent(description)}
             {!!content.length && props.utils.toReactComponent(['section'].concat(content))}
             <h2>代码片段</h2>
-            {!!style && <style dangerouslySetInnerHTML={{ __html: style }} />}
+            {!!style && <style dangerouslySetInnerHTML={{__html: style}}/>}
             <h3>jsx</h3>
             {!!highlightedCode.length && props.utils.toReactComponent(highlightedCode)}
             {highlightedStyle && <h3>css</h3>}
             {highlightedStyle && (<pre className="css">
-              <code dangerouslySetInnerHTML={{ __html: highlightedStyle }} />
+              <code dangerouslySetInnerHTML={{__html: highlightedStyle}}/>
             </pre>)}
           </article>
         </TweenOne>
