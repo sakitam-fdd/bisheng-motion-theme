@@ -1,6 +1,7 @@
 import React from 'react';
 import {getChildren} from 'jsonml.js/lib/utils';
 import DocumentTitle from 'react-document-title';
+import EditButton from '../components/EditButton'
 import * as utils from '../utils';
 import Page from '../components/Page'
 
@@ -12,7 +13,7 @@ class Guide extends React.Component {
   render () {
     const {pageData, themeConfig} = this.props;
     const {meta, content, toc, api} = pageData;
-    const {title, subtitle, chinese, english} = meta;
+    const {title, subtitle, chinese, english, filename} = meta;
     const tocItem = this.props.utils.toReactComponent(toc);
     const tocChildren = utils.toArrayChildren(tocItem.props.children).map((item) => {
       const itemChildren = utils.toArrayChildren(item.props.children).map(cItem =>
@@ -29,6 +30,10 @@ class Guide extends React.Component {
             <h1>
               {title || english}
               {(!subtitle && !chinese) ? null : <i>{subtitle || chinese}</i>}
+              <EditButton
+                title={title}
+                filename={filename}
+                themeConfig={themeConfig}/>
             </h1>
             {!toc || toc.length <= 1 ? null :
               (<section className="toc">

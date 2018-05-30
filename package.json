@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/sakitam-fdd/bisheng-motion-theme#readme",
   "devDependencies": {
-    "antd": "~3.1.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-plugin-import": "^1.6.2",
@@ -51,6 +50,7 @@
     "tween-functions": "^1.2.0"
   },
   "dependencies": {
+    "antd": "^3.5.4",
     "bisheng": "^0.28.3",
     "bisheng-plugin-antd": "^0.16.3",
     "bisheng-plugin-description": "^0.1.4",

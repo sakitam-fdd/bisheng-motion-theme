@@ -25,6 +25,7 @@ module.exports = {
     home: '/',
     source: 'docs',
     title: 'motion theme',
+    repository: 'https://github.com/sakitam-fdd/bisheng-motion-theme/edit/dev/',
     index: {
       banner: {
         title: 'Bisheng Motion Theme',
