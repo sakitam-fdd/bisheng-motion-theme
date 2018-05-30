@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import DocumentTitle from 'react-document-title';
 import ScrollLink from 'rc-scroll-anim/lib/ScrollLink';
 import {isObject, isEmpty, scrollTo} from '../utils';
-import Banner from './Banner';
+import Banner from './banner';
 import Introduce from './introduce';
 import Exhibition from './exhibition'
 import '../../static/style';

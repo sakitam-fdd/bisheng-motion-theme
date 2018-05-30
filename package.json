@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "start": "bisheng start",
+    "localStart": "node server",
     "build": "bisheng build --ssr",
     "deploy": "bisheng gh-pages --ssr && npm run clean",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib && npm run copy-assets",
