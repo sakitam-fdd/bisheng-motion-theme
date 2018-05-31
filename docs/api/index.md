@@ -23,7 +23,7 @@ $ npm install rc-animate --save
 
 ### 使用
 
-```jsx
+```jsx harmony
 import Input from 'antd/lib/input';
 
 class LogoGather extends React.Component {
@@ -42,6 +42,7 @@ ReactDOM.render(
   <Edit />
 , mountNode);
 ```
+
 > [查看详细使用](https://github.com/react-component/animate/blob/master/docs/zh-cn/intro.md)
 
 ## API

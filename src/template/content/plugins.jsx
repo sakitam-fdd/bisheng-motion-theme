@@ -1,7 +1,8 @@
 import React from 'react';
+import { Affix } from 'antd';
+import EditButton from '../components/EditButton';
 import {getChildren} from 'jsonml.js/lib/utils';
 import DocumentTitle from 'react-document-title';
-import * as utils from '../utils';
 
 class Plugins extends React.Component {
   static propTypes = {};
@@ -11,26 +12,28 @@ class Plugins extends React.Component {
   render () {
     const {pageData, themeConfig} = this.props;
     const {meta, content, toc, api} = pageData;
-    const {title, subtitle, chinese, english} = meta;
-    const tocItem = this.props.utils.toReactComponent(toc);
-    const tocChildren = utils.toArrayChildren(tocItem.props.children).map((item) => {
-      const itemChildren = utils.toArrayChildren(item.props.children).map(cItem =>
-        React.cloneElement(cItem, {
-          onClick: utils.scrollClick,
-        }));
-      return React.cloneElement(item, item.props, itemChildren);
-    });
+    const {title, subtitle, chinese, english, filename} = meta;
     return (
       <DocumentTitle title={`${title || chinese || english} - ${themeConfig.title}`}>
         <article className="markdown">
           <h1>
             {title || english}
             {(!subtitle && !chinese) ? null : <i>{subtitle || chinese}</i>}
+            <EditButton
+              title={title}
+              filename={filename}
+              themeConfig={themeConfig}/>
           </h1>
-          {!toc || toc.length <= 1 ? null :
-            (<section className="toc">
-              {React.cloneElement(tocItem, tocItem.props, tocChildren)}
-            </section>)}
+          {
+            (!toc || toc.length <= 1 || meta.toc === false) ? null :
+              <Affix className="toc-affix" offsetTop={16}>
+                {
+                  this.props.utils.toReactComponent(
+                    ['ul', { className: 'toc' }].concat(getChildren(toc))
+                  )
+                }
+              </Affix>
+          }
           {!content ? null :
             this.props.utils.toReactComponent(['section', {className: 'markdown'}]
               .concat(getChildren(content)))}

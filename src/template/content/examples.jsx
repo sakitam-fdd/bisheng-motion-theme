@@ -14,11 +14,16 @@ class Examples extends React.Component {
     className: 'examples-list',
   };
 
+  calcMinHeight () {
+    return {
+      minHeight: `${window.document.body.clientHeight - 130}px`
+    }
+  }
+
   render () {
     const {pageData, themeConfig} = this.props
     const demo = pageData.demo;
     const source = themeConfig.source;
-    console.log(this)
     const listChildren = Object.keys(demo).map(key => demo[key])
       .sort((a, b) => b.meta.order - a.meta.order)
       .map((item) => {
@@ -33,7 +38,7 @@ class Examples extends React.Component {
           <h3>{title}</h3>
         </li>);
       });
-    return (<div className="page">
+    return (<div className="page" style={this.calcMinHeight()}>
       <div className="page-wrapper">
         <TweenOne
           className={this.props.className}

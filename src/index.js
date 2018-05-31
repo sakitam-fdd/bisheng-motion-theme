@@ -5,11 +5,11 @@ const Plugins = './template/content/plugins';
 const Examples = './template/content/examples';
 const Details = './template/components/Details';
 module.exports = {
-  home: '/',
+  home: '',
   plugins: [
     'bisheng-plugin-description',
-    'bisheng-plugin-toc?maxDepth=2',
-    'bisheng-plugin-react?lang=__react',
+    'bisheng-plugin-toc?maxDepth=3',
+    'bisheng-plugin-react?lang=jsx harmony',
     'bisheng-plugin-antd',
   ],
   routes: {

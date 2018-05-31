@@ -7,7 +7,7 @@ english: index
 
 测试
 
-```__react
+```jsx harmony
 import React from 'react';
 import PropTypes from 'prop-types';
 import TweenOne from 'rc-tween-one';

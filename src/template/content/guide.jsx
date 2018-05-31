@@ -1,8 +1,8 @@
 import React from 'react';
+import { Affix } from 'antd';
 import {getChildren} from 'jsonml.js/lib/utils';
 import DocumentTitle from 'react-document-title';
-import EditButton from '../components/EditButton'
-import * as utils from '../utils';
+import EditButton from '../components/EditButton';
 
 class Guide extends React.Component {
   static propTypes = {};
@@ -13,14 +13,6 @@ class Guide extends React.Component {
     const {pageData, themeConfig} = this.props;
     const {meta, content, toc, api} = pageData;
     const {title, subtitle, chinese, english, filename} = meta;
-    const tocItem = this.props.utils.toReactComponent(toc);
-    const tocChildren = utils.toArrayChildren(tocItem.props.children).map((item) => {
-      const itemChildren = utils.toArrayChildren(item.props.children).map(cItem =>
-        React.cloneElement(cItem, {
-          onClick: utils.scrollClick,
-        }));
-      return React.cloneElement(item, item.props, itemChildren);
-    });
     return (
       <DocumentTitle title={`${title || chinese || english} - ${themeConfig.title}`}>
         <article className="markdown">
@@ -32,10 +24,16 @@ class Guide extends React.Component {
               filename={filename}
               themeConfig={themeConfig}/>
           </h1>
-          {!toc || toc.length <= 1 ? null :
-            (<section className="toc">
-              {React.cloneElement(tocItem, tocItem.props, tocChildren)}
-            </section>)}
+          {
+            (!toc || toc.length <= 1 || meta.toc === false) ? null :
+              <Affix className="toc-affix" offsetTop={16}>
+                {
+                  this.props.utils.toReactComponent(
+                    ['ul', { className: 'toc' }].concat(getChildren(toc))
+                  )
+                }
+              </Affix>
+          }
           {!content ? null :
             this.props.utils.toReactComponent(['section', {className: 'markdown'}]
               .concat(getChildren(content)))}

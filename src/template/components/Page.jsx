@@ -43,6 +43,12 @@ class Page extends React.PureComponent {
     }
   }
 
+  calcMinHeight () {
+    return {
+      minHeight: `${window.document.body.clientHeight - 130}px`
+    }
+  }
+
   onScroll = () => {
     if (this.hash !== window.location.hash) {
       this.hash = window.location.hash;
@@ -151,7 +157,7 @@ class Page extends React.PureComponent {
     const pathKey = pathNames && pathNames.length > 0 && pathNames[0];
     const moduleData = this.getModuleData(data, pathNames);
     const listToRender = this.getListChildren(moduleData, pathNames, pathKey, isMobile);
-    return (<div className={className}>
+    return (<div className={className} style={this.calcMinHeight()}>
       <TweenOneGroup
         enter={{
           y: 30,

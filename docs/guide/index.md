@@ -16,7 +16,7 @@ image: https://zos.alipayobjects.com/rmsportal/YsRZqQwpiAVgWrX.png
 图片取点像素为控制点的个数，以图片宽度除以像素点来决定点的个数, 默认为 20, 每行每排为15个取点。
 
 
-```jsx
+```jsx harmony
 import Input from 'antd/lib/input';
 
 class LogoGather extends React.Component {
