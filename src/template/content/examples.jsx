@@ -16,7 +16,7 @@ class Examples extends React.Component {
 
   calcMinHeight () {
     return {
-      minHeight: `${window.document.body.clientHeight - 130}px`
+      minHeight: (window.document.body.clientHeight - 130) + 'px'
     }
   }
 

@@ -45,7 +45,7 @@ class Page extends React.PureComponent {
 
   calcMinHeight () {
     return {
-      minHeight: `${window.document.body.clientHeight - 130}px`
+      minHeight: (window.document.body.clientHeight - 130) + 'px'
     }
   }
 

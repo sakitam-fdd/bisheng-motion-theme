@@ -5,6 +5,7 @@ lib/
 node_modules/
 test/
 _site/
+bisheng-motion-theme/
 .editorconfig
 .babelrc
 coverage/

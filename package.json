@@ -10,11 +10,11 @@
   "scripts": {
     "start": "bisheng start",
     "localStart": "node server",
-    "build": "bisheng build --ssr",
+    "build": "npm run clean && bisheng build --ssr",
     "deploy": "bisheng gh-pages --ssr && npm run clean",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib && npm run copy-assets",
     "copy-assets": "shx cp -R src/static/* lib/static",
-    "clean": "shx rm -rf lib _site"
+    "clean": "shx rm -rf lib bisheng-motion-theme"
   },
   "author": "FDD <smilefdd@gmail.com>",
   "repository": {

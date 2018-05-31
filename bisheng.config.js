@@ -14,7 +14,7 @@ function alertBabelConfig (rules) {
 }
 
 module.exports = {
-  root: 'bisheng-motion-theme/',
+  root: '/',
   source: './docs',
   output: './bisheng-motion-theme',
   theme: './src/index',
