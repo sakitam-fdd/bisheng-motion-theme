@@ -5,6 +5,7 @@ import TweenOne from 'rc-tween-one';
 import {enquireScreen} from 'enquire-js';
 import Header from './header';
 import Footer from './footer';
+import Page from '../components/Page'
 
 let isMobile = false;
 enquireScreen((b) => {
@@ -52,9 +53,19 @@ class Index extends React.Component {
   };
 
   render () {
-    const {children, ...restProps} = this.props
+    const {...restProps} = this.props;
     const path = this.props.location.pathname;
     const pathKey = path && path.split('/')[0];
+    const children = !pathKey || pathKey === 'examples' ?
+      React.cloneElement(this.props.children, {
+        key: pathKey ? path : pathKey,
+      }) :
+      (<Page
+        key={pathKey}
+        {...this.props}
+        isMobile={this.state.isMobile}>
+        {this.props.children}
+      </Page>);
     return (<div id="react-root" className={!pathKey ? 'index' : ''}>
       <Header activeKey={pathKey} {...restProps} />
       <TweenOne.TweenOneGroup

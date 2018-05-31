@@ -98,8 +98,7 @@ class Page extends React.PureComponent {
     });
   }
 
-  getListChildren = (moduleData, pathNames, pathKey) => {
-    const isMobile = false;
+  getListChildren = (moduleData, pathNames, pathKey, isMobile) => {
     const {themeConfig} = this.props;
     const _title = themeConfig.header.nav.filter(_item => _item['key'] === pathKey)
     const listToRender = moduleData && this.getMenuItems(moduleData[pathNames[0]], pathNames);
@@ -125,6 +124,13 @@ class Page extends React.PureComponent {
       (<MobileMenu width="180px">
           <div className="nav-list-wrapper">
             <div className="nav-list">
+              {
+                _title && _title.length > 0 ? (
+                  <h2 key={`${pathKey}-title`}>
+                    {_title[0]['name']}
+                  </h2>
+                ) : ({})
+              }
               <ul>
                 {listToRender}
               </ul>
@@ -140,11 +146,11 @@ class Page extends React.PureComponent {
   };
 
   render () {
-    const {className, location, data, children} = this.props;
+    const {className, location, data, children, isMobile} = this.props;
     const pathNames = location.pathname && location.pathname.split('/');
     const pathKey = pathNames && pathNames.length > 0 && pathNames[0];
     const moduleData = this.getModuleData(data, pathNames);
-    const listToRender = this.getListChildren(moduleData, pathNames, pathKey);
+    const listToRender = this.getListChildren(moduleData, pathNames, pathKey, isMobile);
     return (<div className={className}>
       <TweenOneGroup
         enter={{

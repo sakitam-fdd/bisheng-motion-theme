@@ -15,3 +15,4 @@ import './styles/main/main.less';
 import './styles/components/page.less';
 import './styles/content/examples.less';
 import './styles/components/edit-button.less';
+import './styles/components/menu.less';
