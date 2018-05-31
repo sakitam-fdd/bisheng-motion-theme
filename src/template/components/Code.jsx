@@ -30,7 +30,8 @@ class Code extends React.Component {
 
   componentDidMount () {
     enquireScreen((bool) => {
-      this.setState({bool});
+      const isMode = bool;
+      this.setState({ isMode });
     });
   }
 
@@ -65,10 +66,6 @@ class Code extends React.Component {
       </div>
       <div className={`${this.props.className}-left ${this.state.openCode ? 'code-open' : ''}`}>
         {this.state.code}
-        {/*<div className={`${this.props.className}-left-bar`}>*/}
-        {/*<div className={`${this.props.className}-left-bar-logo`}>*/}
-        {/*</div>*/}
-        {/*</div>*/}
         {this.state.isMode && (<div className={`${this.props.className}-close`} onClick={this.codeCloseClick}>
           <Icon type="close"/>
         </div>)}

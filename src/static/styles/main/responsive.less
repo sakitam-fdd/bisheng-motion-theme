@@ -79,29 +79,31 @@
       }
     }
   }
-  .home-wrapper {
+  .main-wrapper {
     .banner-wrapper .banner-demo,
     .banner-wrapper .banner-text {
       position: relative;
     }
     .banner-wrapper {
-      .banner-demo {
-        height: 55%;
-      }
-      .banner-text {
-        height: 45%;
-        width: 100%;
-        text-align: center;
-      }
       .banner-bg-center {
         top: 35%;
         left: 20%;
       }
-      .banner-mouse {
-        display: none;
-      }
-      .banner-down {
-        display: block;
+      .banner {
+        .banner-demo {
+          height: 55%;
+        }
+        .banner-text {
+          height: 45%;
+          width: 100%;
+          text-align: center;
+        }
+        .banner-mouse {
+          display: none;
+        }
+        .banner-down {
+          display: block;
+        }
       }
     }
     .logo-demo .right-side {
@@ -219,28 +221,30 @@
 }
 
 @media screen and (max-width: 414px) {
-  .home-wrapper {
+  .main-wrapper {
     .nav-wrapper {
       display: none;
     }
     .banner-wrapper {
-      .banner-text {
-        width: 100%;
-        p {
-          margin: 10px auto;
-          font-size: 12px;
+      .banner {
+        .banner-text {
+          width: 100%;
+          p {
+            margin: 10px auto;
+            font-size: 12px;
+          }
+          h3 {
+            font-size: 12px;
+          }
         }
-        h3 {
-          font-size: 12px;
+        .banner-down-wrapper {
+          bottom: 10px;
+          font-size: 24px;
         }
-      }
-      .banner-down-wrapper {
-        bottom: 10px;
-        font-size: 24px;
-      }
-      .logo-demo .right-side {
-        width: 210px;
-        height: 280px;
+        .logo-demo .right-side {
+          width: 210px;
+          height: 280px;
+        }
       }
     }
     .main-page-wrapper {
@@ -251,9 +255,9 @@
         font-size: 12px;
       }
     }
-    .page1 {
+    .introduce {
       .code-wrapper {
-        width: 90%;
+        width: 100%;
         .code {
           .code-left {
             width: 100%;
@@ -293,8 +297,8 @@
         }
       }
     }
-    .page2 {
-      height: 2700px;
+    .exhibition {
+      height: auto;
       .page-text {
         width: 100%;
       }
@@ -350,11 +354,13 @@
       transform: scale(.8) translateY(8px);
     }
   }
-  .home-wrapper {
+  .main-wrapper {
     .banner-wrapper {
-      .banner-text {
-        h1 {
-          font-size: 40px;
+      .banner {
+        .banner-text {
+          h1 {
+            font-size: 40px;
+          }
         }
       }
     }

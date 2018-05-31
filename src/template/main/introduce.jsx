@@ -43,7 +43,7 @@ class Introduce extends React.Component {
             <p key="p">{introduce}</p>
           </QueueAnim>
           <TweenOne
-            className="code-wrapper"
+            className="code-wrapper clearfix"
             animation={{...this.props.tweenAnim, delay: 200}}
             key="code">
             <Code className="code" pageData={this.props.pageData} utils={this.props.utils}/>
