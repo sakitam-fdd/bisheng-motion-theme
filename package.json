@@ -14,7 +14,8 @@
     "deploy": "bisheng gh-pages --ssr && npm run clean",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib && npm run copy-assets",
     "copy-assets": "shx cp -R src/static/* lib/static",
-    "clean": "shx rm -rf lib bisheng-motion-theme"
+    "clean": "shx rm -rf lib _site",
+    "publish": "yarn deploy.js"
   },
   "author": "FDD <smilefdd@gmail.com>",
   "repository": {

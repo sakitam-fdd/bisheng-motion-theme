@@ -23,7 +23,7 @@ class Exhibition extends React.Component {
   };
 
   render () {
-    const {pageData, exhibition, utils} = this.props;
+    const {pageData, exhibition, themeConfig, utils} = this.props;
     const examples = pageData['examples']['demo']
     const demoToChildren = Object.keys(examples)
       .map(key => examples[key])
@@ -31,7 +31,10 @@ class Exhibition extends React.Component {
       .filter((key, i) => i < 6)
       .map((item) => {
         const img = item.meta.image;
-        const link = item.meta.filename.replace(/(\/index)|(.md)/g, '');
+        let link = item.meta.filename.replace(/(.md)/g, '');
+        if (themeConfig.source) {
+          link = link.replace(new RegExp(themeConfig.source), '');
+        }
         const title = item.meta.chinese || item.meta.english;
         const content = utils.toReactComponent(item.description);
         return (<li key={link}>

@@ -14,9 +14,20 @@ class Examples extends React.Component {
     className: 'examples-list',
   };
 
-  calcMinHeight () {
+  constructor (props) {
+    super(props);
+    this.state = {
+      minHeight: '300px'
+    };
+  }
+
+  componentDidMount () {
+    this.state.minHeight = (document.body.clientHeight - 130) + 'px';
+  }
+
+  calcMinHeight = () => {
     return {
-      minHeight: (window.document.body.clientHeight - 130) + 'px'
+      minHeight: (document.body.clientHeight - 130) + 'px'
     }
   }
 
@@ -38,7 +49,7 @@ class Examples extends React.Component {
           <h3>{title}</h3>
         </li>);
       });
-    return (<div className="page" style={this.calcMinHeight()}>
+    return (<div className="page" style={{minHeight: this.state.minHeight}}>
       <div className="page-wrapper">
         <TweenOne
           className={this.props.className}

@@ -75,6 +75,7 @@ class Home extends React.Component {
                 utils={this.props.utils}
                 tweenAnim={this.tweenAnim}
                 exhibition={exhibition}
+                themeConfig={themeConfig}
                 onButtonClick={this.scrollToTop}/>
             ) : ({})
           }

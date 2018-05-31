@@ -20,12 +20,14 @@ class Page extends React.PureComponent {
     super(props);
     this.state = {
       isHash: false,
+      minHeight: '300px'
     };
   }
 
   componentDidMount () {
     this.componentDidUpdate();
     this.enter = true;
+    this.state.minHeight = (document.body.clientHeight - 130) + 'px';
   }
 
   componentDidUpdate () {
@@ -40,12 +42,6 @@ class Page extends React.PureComponent {
       window.removeEventListener('scroll', this.onScroll);
     } else {
       window.detachEvent('onscroll', this.onScroll);
-    }
-  }
-
-  calcMinHeight () {
-    return {
-      minHeight: (window.document.body.clientHeight - 130) + 'px'
     }
   }
 
@@ -157,7 +153,7 @@ class Page extends React.PureComponent {
     const pathKey = pathNames && pathNames.length > 0 && pathNames[0];
     const moduleData = this.getModuleData(data, pathNames);
     const listToRender = this.getListChildren(moduleData, pathNames, pathKey, isMobile);
-    return (<div className={className} style={this.calcMinHeight()}>
+    return (<div className={className}>
       <TweenOneGroup
         enter={{
           y: 30,
