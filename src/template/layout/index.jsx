@@ -53,7 +53,7 @@ class Index extends React.Component {
   };
 
   render () {
-    const {...restProps} = this.props;
+    const {...restProps, } = this.props;
     const path = this.props.location.pathname;
     const pathKey = path && path.split('/')[0];
     const children = !pathKey || pathKey === 'examples' ?
@@ -71,11 +71,10 @@ class Index extends React.Component {
       <TweenOne.TweenOneGroup
         className="content-wrapper"
         onEnd={this.onChange}
-        enter={{type: 'from', opacity: 0, ease: 'easeOutQuart'}}
-        leave={{opacity: 0, ease: 'easeInOutQuart'}}
-        ref={(c) => {
-          this.content = c;
-        }}>
+        enter={{ type: 'from', opacity: 0, ease: 'easeOutQuart' }}
+        leave={{ opacity: 0, ease: 'easeInOutQuart' }}
+        ref={(c) => { this.content = c; }}
+      >
         {children}
       </TweenOne.TweenOneGroup>
       <Footer {...restProps} />

@@ -5,7 +5,7 @@ app.set('port', 3333)
 app.use(express.static(__dirname + "/"));
 
 app.get("/",function(req,res){
-  res.sendFile(path.join(__dirname, "/bisheng-motion-theme/index.html"));
+  res.sendFile(path.join(__dirname, "/bisheng-motion-theme/map.html"));
 });
 
 //catch 404 and forward to error handler

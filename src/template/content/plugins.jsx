@@ -1,5 +1,4 @@
 import React from 'react';
-import { Affix } from 'antd';
 import EditButton from '../components/EditButton';
 import {getChildren} from 'jsonml.js/lib/utils';
 import DocumentTitle from 'react-document-title';
@@ -11,7 +10,7 @@ class Plugins extends React.Component {
 
   render () {
     const {pageData, themeConfig} = this.props;
-    const {meta, content, toc, api} = pageData;
+    const {meta, content, api} = pageData;
     const {title, subtitle, chinese, english, filename} = meta;
     return (
       <DocumentTitle title={`${title || chinese || english} - ${themeConfig.title}`}>
@@ -24,16 +23,6 @@ class Plugins extends React.Component {
               filename={filename}
               themeConfig={themeConfig}/>
           </h1>
-          {
-            (!toc || toc.length <= 1 || meta.toc === false) ? null :
-              <Affix className="toc-affix" offsetTop={16}>
-                {
-                  this.props.utils.toReactComponent(
-                    ['ul', { className: 'toc' }].concat(getChildren(toc))
-                  )
-                }
-              </Affix>
-          }
           {!content ? null :
             this.props.utils.toReactComponent(['section', {className: 'markdown'}]
               .concat(getChildren(content)))}

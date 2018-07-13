@@ -40,7 +40,7 @@ class Examples extends React.Component {
       .map((item) => {
         const img = item.meta.image;
         const _link = item.meta.filename.replace(new RegExp(source), '');
-        const link = _link.replace(/(\/index\.md)/g, '/index');
+        const link = _link.replace(/(\/index\.md)/g, '/map');
         const title = item.meta.chinese || item.meta.english;
         return (<li key={link}>
           <Link to={link}>

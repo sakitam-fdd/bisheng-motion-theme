@@ -9,6 +9,10 @@ image: https://zos.alipayobjects.com/rmsportal/YsRZqQwpiAVgWrX.png
 
 ---
 
+## 怎么使用
+
+### 动画实现
+
 首页 logo 动画的实现代码, 提供三个logo的样式， 还可自已添加 logo，如果需定制个性化的东西，请在 LogoGather 里修改。
 
 图片默认尺寸为 300 * 300;

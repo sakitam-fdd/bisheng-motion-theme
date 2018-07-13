@@ -1,14 +1,14 @@
 'use strict';
-const Guide = './template/content/guide';
 const Api = './template/content/api';
 const Plugins = './template/content/plugins';
 const Examples = './template/content/examples';
 const Details = './template/components/Details';
+const ArticleDemo = './template/content/ArticleDemo';
 module.exports = {
-  home: '',
+  home: '/',
   plugins: [
     'bisheng-plugin-description',
-    'bisheng-plugin-toc?maxDepth=3',
+    'bisheng-plugin-toc?maxDepth=2',
     'bisheng-plugin-react?lang=jsx harmony',
     'bisheng-plugin-antd',
   ],
@@ -21,7 +21,7 @@ module.exports = {
     childRoutes: [
       {
         path: '/guide/:contentName',
-        component: Guide
+        component: ArticleDemo
       },
       {
         path: '/api/:contentName',

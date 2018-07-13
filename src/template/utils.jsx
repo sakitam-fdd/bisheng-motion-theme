@@ -145,7 +145,7 @@ function getLocalizedPathname (path, zhCN) {
   if (!zhCN) { // to enUS
     return /\/?index-cn/.test(pathname) ? '/' : pathname.replace('-cn', '');
   } else if (pathname === '/') {
-    return '/index-cn';
+    return '/map-cn';
   } else if (pathname.endsWith('/')) {
     return pathname.replace(/\/$/, '-cn/');
   }
@@ -192,6 +192,41 @@ function scrollClick (e) {
   }
 }
 
+function getMenuItems(moduleData) {
+  const menuMeta = moduleData.map(item => item.meta);
+  const menuItems = [];
+  const sortFn = (a, b) => (a.order || 0) - (b.order || 0);
+  menuMeta.sort(sortFn).forEach((meta) => {
+    if (!meta.category) {
+      menuItems.push(meta);
+    } else {
+      const category = meta.category;
+      let group = menuItems.filter(i => i.title === category)[0];
+      if (!group) {
+        group = {
+          type: 'category',
+          title: category,
+          children: []
+        };
+        menuItems.push(group);
+      }
+      group.children.push(meta);
+    }
+  });
+  return menuItems.map((i) => {
+    const item = i;
+    if (item.children) {
+      item.children = item.children.sort(sortFn);
+    }
+    return item;
+  }).sort(sortFn);
+}
+
+function fileNameToPath(filename) {
+  const snippets = filename.replace(/(\/index)?((\.zh-CN)|(\.en-US))?\.md$/i, '').split('/');
+  return snippets[snippets.length - 1];
+}
+
 export {
   bind,
   isDate,
@@ -207,5 +242,7 @@ export {
   toArrayChildren,
   currentScrollTop,
   scrollTo,
-  scrollClick
+  scrollClick,
+  getMenuItems,
+  fileNameToPath
 }
